@@ -35,7 +35,6 @@
         <module>Domain</module>
         <module>Infrastructure</module>
         <module>Application</module>
-        <module>Bootloader</module>
     </modules>
 
     <dependencies>
