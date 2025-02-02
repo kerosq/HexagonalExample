@@ -1,10 +1,14 @@
 package com.school.bootloader;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class BootloaderApplication {
 
     public static void main(String[] args) {
 
-        System.out.println("BOOTLOADER");
+        SpringApplication.run(BootloaderApplication.class, args);
 
     }
 
