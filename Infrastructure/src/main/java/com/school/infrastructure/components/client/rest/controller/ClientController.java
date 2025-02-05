@@ -21,7 +21,7 @@ public class ClientController  {
     @PostMapping()
     public ResponseEntity<ClientRes> create(@RequestBody ClientCreateReq clientToCreate) {
         var client = port.create(ClientCreateReq.toDomain(clientToCreate));
-        return ResponseEntity.status(HttpStatus.CREATED).body(ClientRes.toResponse(client));
+        return ResponseEntity.status(HttpStatus.OK).body(ClientRes.toResponse(client));
     }
 
     @GetMapping()
