@@ -9,16 +9,6 @@
     </parent>
 
     <artifactId>Domain</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Domain</name>
-    <description>Domain</description>
-
-    <properties>
-        <java.version>17</java.version>
-    </properties>
-    <dependencies>
-
-    </dependencies>
-
+    <name>${project.groupId}:${project.artifactId}</name>
 
 </project>
