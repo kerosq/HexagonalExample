@@ -1,6 +1,7 @@
 package com.school.application.usecase.user;
 
 import com.school.domain.model.User;
+import com.school.domain.service.UserService;
 import com.school.domain.usecase.GetUsersUseCase;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class GetUsers implements GetUsersUseCase {
+
+  private final UserService userService;
+
   @Override
   public List<User> getUsers() {
-    log.debug("[APPLICATION-USECASE] - getUsers");
+    log.info("[APPLICATION-USECASE] - getUsers");
 
-    return List.of();
+    return userService.getUsers();
   }
 }
