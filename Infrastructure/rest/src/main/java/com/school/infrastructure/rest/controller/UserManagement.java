@@ -1,19 +1,17 @@
 package com.school.infrastructure.rest.controller;
 
 import com.school.domain.usecase.GetUsersUseCase;
-import com.school.infrastructure.rest.api.UserApi;
+import com.school.infrastructure.rest.api.UserApiDelegate;
 import com.school.infrastructure.rest.dto.UserDto;
 import com.school.infrastructure.rest.mapper.UserRestMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
-@RestController
-@RequestMapping("/user")
-public class UserManagement implements UserApi {
+public class UserManagement implements UserApiDelegate {
   private final UserRestMapper userRestMapper;
   private final GetUsersUseCase getUsersUseCase;
 
@@ -21,6 +19,8 @@ public class UserManagement implements UserApi {
   public ResponseEntity<List<UserDto>> getUsers() {
     // Implementación
 
-    return null;
+    final var users = userRestMapper.mapList(getUsersUseCase.getUsers());
+
+    return ResponseEntity.ok(users);
   }
 }
