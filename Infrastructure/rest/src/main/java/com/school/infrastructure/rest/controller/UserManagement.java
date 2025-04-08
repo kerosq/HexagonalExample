@@ -17,10 +17,14 @@ public class UserManagement implements UserApiDelegate {
 
   @Override
   public ResponseEntity<List<UserDto>> getUsers() {
-    // Implementación
 
-    final var users = userRestMapper.mapList(getUsersUseCase.getUsers());
+    final var domainUsers = getUsersUseCase.getUsers();
+    final var userDtos = userRestMapper.mapList(domainUsers);
 
-    return ResponseEntity.ok(users);
+    if (userDtos == null || userDtos.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    return ResponseEntity.ok(userDtos);
   }
 }
