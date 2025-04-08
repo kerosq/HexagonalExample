@@ -6,9 +6,11 @@ import com.school.infrastructure.rest.dto.UserDto;
 import com.school.infrastructure.rest.mapper.UserRestMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserManagement implements UserApiDelegate {
@@ -18,6 +20,7 @@ public class UserManagement implements UserApiDelegate {
   @Override
   public ResponseEntity<List<UserDto>> getUsers() {
 
+    log.info("[APPLICATION-USECASE] - getUsers");
     final var domainUsers = getUsersUseCase.getUsers();
     final var userDtos = userRestMapper.mapList(domainUsers);
 
