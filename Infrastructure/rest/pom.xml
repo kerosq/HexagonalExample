@@ -13,16 +13,99 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
-        <packgage.name>com.school.infrastructure.rest</packgage.name>
+        <package.name>com.school.infrastructure.rest</package.name>
+        <!--        <package.name/>-->
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.12.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-api</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/spec/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <addCompileSourceRoot>true</addCompileSourceRoot>
+                            <artifactId>openapi-spring</artifactId>
+                            <apiPackage>${package.name}.api</apiPackage>
+                            <modelPackage>${package.name}.dto</modelPackage>
+                            <modelNameSuffix>Dto</modelNameSuffix>
+                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <condifgPackageName>${package.name}.config</condifgPackageName>
+                                <dateLibrary>java8</dateLibrary>
+                                <interfaceOnly>false</interfaceOnly>
+                                <delegatePattern>true</delegatePattern>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <basePackage>${package.name}</basePackage>
+                                <java8>true</java8>
+                                <useTags>true</useTags>
+                                <generatedConstructorWithRequiredArgs>false</generatedConstructorWithRequiredArgs>
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Builder
+                                    @lombok.AllArgsConstructor(access = lombok.AccessLevel.PRIVATE)
+                                    @lombok.NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
+                                    @lombok.Generated
+                                </additionalModelTypeAnnotations>
+                                <TypeMappings>
+                                    <mapping>number+int64=Long</mapping>
+                                    <mapping>LongDto=Long</mapping>
+                                    <mapping>number+float=BigDecimal</mapping>
+                                    <maping>BigDecimalDto=BigDecimal</maping>
+                                </TypeMappings>
+                                <importMappings>
+                                    <mapping>BigDecimalDto=java.math.BigDecimal</mapping>
+                                    <mapping>LongDto=java.lang.Long</mapping>
+                                </importMappings>
+
+                                <!--                                <delegatePattern>true</delegatePattern>-->
+                                <!--                                <interfaceOnly>false</interfaceOnly>-->
+                                <!--                                <useSpringBoot3>true</useSpringBoot3>-->
+                                <!--                                <useTags>true</useTags>-->
+                                <!--                                <skipDefaultInterface>false</skipDefaultInterface>-->
+                                <!--                                <useOptional>true</useOptional>-->
+                                <!--                                <openApiNullable>false</openApiNullable>-->
+
+                            </configOptions>
+                            <typeMappings>string+time=OffsetTime</typeMappings>
+                            <importMappings>OffsetTime=java.time.OffsetTime</importMappings>
+                            <globalProperties>
+                                <skipFormModel>false</skipFormModel>
+                            </globalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
