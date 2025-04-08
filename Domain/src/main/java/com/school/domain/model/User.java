@@ -9,13 +9,13 @@ import lombok.*;
 @Builder
 public class User {
 
-  private Long Id;
-  private String Name;
-  private String Address;
-  private int Age;
-  private Integer Phone;
-  private String Email;
-  private String Password;
-  private String Role;
-  private String Status;
+  private Long id;
+  private String name;
+  private String address;
+  private int age;
+  private Integer phone;
+  private String email;
+  private String password;
+  private String role;
+  private String status;
 }

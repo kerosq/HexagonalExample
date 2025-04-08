@@ -13,7 +13,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <dependencies>
-        
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Application</artifactId>
@@ -22,6 +22,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>Infrastructure-client</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Infrastructure-jpa</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Infrastructure-rest</artifactId>
