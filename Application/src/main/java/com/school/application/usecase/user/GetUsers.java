@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 public class GetUsers implements GetUsersUseCase {
   @Override
   public List<User> getUsers() {
+    log.debug("[APPLICATION-USECASE] - getUsers");
+
     return List.of();
   }
 }
