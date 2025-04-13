@@ -1,7 +1,8 @@
 package com.school.infrastructure.rest.controlleradvice;
 
 import com.school.domain.exception.UserException;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
