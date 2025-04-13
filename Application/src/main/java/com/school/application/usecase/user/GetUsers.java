@@ -19,7 +19,6 @@ public class GetUsers implements GetUsersUseCase {
 
   @Override
   public List<User> getUsers() {
-    log.info("getUsers");
 
     final var users = userService.getUsers();
 
