@@ -19,12 +19,13 @@ public class UserPersistenceService implements UserService {
   public List<User> getUsers() {
 
     final var usersEntity = userEntityRepository.findAll();
-    final var userDomain = userEntityMapper.map(usersEntity);
-    return userDomain;
+    return userEntityMapper.mapToListDomain(usersEntity);
   }
 
   @Override
   public User getUserById(Long id) {
-    return null;
+
+    final var userEntity = userEntityRepository.findById(id).orElse(null);
+    return userEntityMapper.mapToDomain(userEntity);
   }
 }

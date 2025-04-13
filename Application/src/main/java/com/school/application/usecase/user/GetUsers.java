@@ -1,5 +1,7 @@
 package com.school.application.usecase.user;
 
+import com.school.domain.exception.UserException;
+import com.school.domain.exception.UserExceptionErrorType;
 import com.school.domain.model.User;
 import com.school.domain.service.UserService;
 import com.school.domain.usecase.GetUsersUseCase;
@@ -17,8 +19,15 @@ public class GetUsers implements GetUsersUseCase {
 
   @Override
   public List<User> getUsers() {
-    log.info("[APPLICATION-USECASE] - getUsers");
+    log.info("getUsers");
 
-    return userService.getUsers();
+    final var users = userService.getUsers();
+
+    if (users == null || users.isEmpty()) {
+      log.warn("No users found");
+      throw new UserException(UserExceptionErrorType.USER_NOT_FOUND, null, null);
+    }
+
+    return users;
   }
 }
