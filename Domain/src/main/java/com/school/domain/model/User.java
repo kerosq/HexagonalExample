@@ -1,5 +1,6 @@
 package com.school.domain.model;
 
+import java.time.OffsetDateTime;
 import lombok.*;
 
 @Getter
@@ -18,4 +19,6 @@ public class User {
   private String password;
   private String role;
   private String status;
+  private OffsetDateTime createdAt;
+  private OffsetDateTime updatedAt;
 }

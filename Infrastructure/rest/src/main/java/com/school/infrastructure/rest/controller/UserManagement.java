@@ -22,7 +22,7 @@ public class UserManagement implements UserApiDelegate {
 
     log.info("[APPLICATION-USECASE] - getUsers");
     final var domainUsers = getUsersUseCase.getUsers();
-    final var userDtos = userRestMapper.mapList(domainUsers);
+    final var userDtos = userRestMapper.mapListToDto(domainUsers);
 
     if (userDtos == null || userDtos.isEmpty()) {
       return ResponseEntity.notFound().build();

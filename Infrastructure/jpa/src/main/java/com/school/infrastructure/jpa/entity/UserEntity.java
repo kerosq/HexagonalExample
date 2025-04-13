@@ -1,10 +1,12 @@
 package com.school.infrastructure.jpa.entity;
 
+import com.school.infrastructure.jpa.enums.UserRoles;
+import com.school.infrastructure.jpa.enums.UserStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import lombok.*;
@@ -44,13 +46,13 @@ public class UserEntity implements Serializable {
 
   private String address;
 
-  private String role;
+  private UserRoles role;
 
-  private String status;
+  private UserStatus status;
 
-  private Instant createdAt;
+  private OffsetDateTime createdAt;
 
-  private Instant updatedAt;
+  private OffsetDateTime updatedAt;
 
   private Set<DoctorEntity> doctors = new LinkedHashSet<>();
 
@@ -101,27 +103,25 @@ public class UserEntity implements Serializable {
     return address;
   }
 
-  @Size(max = 20)
-  @Column(name = "role", length = 20)
-  public String getRole() {
+  @Column(name = "role", nullable = false)
+  public UserRoles getRole() {
     return role;
   }
 
-  @Size(max = 20)
   @Column(name = "status", length = 20)
-  public String getStatus() {
+  public UserStatus getStatus() {
     return status;
   }
 
   @ColumnDefault("CURRENT_TIMESTAMP")
   @Column(name = "created_at")
-  public Instant getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
   @ColumnDefault("CURRENT_TIMESTAMP")
   @Column(name = "updated_at")
-  public Instant getUpdatedAt() {
+  public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
