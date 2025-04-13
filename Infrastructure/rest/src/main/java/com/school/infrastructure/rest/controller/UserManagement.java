@@ -1,5 +1,6 @@
 package com.school.infrastructure.rest.controller;
 
+import com.school.domain.usecase.GetUserByIdUseCase;
 import com.school.domain.usecase.GetUsersUseCase;
 import com.school.infrastructure.rest.api.UserApiDelegate;
 import com.school.infrastructure.rest.dto.UserDto;
@@ -16,18 +17,25 @@ import org.springframework.stereotype.Service;
 public class UserManagement implements UserApiDelegate {
   private final UserRestMapper userRestMapper;
   private final GetUsersUseCase getUsersUseCase;
+  private final GetUserByIdUseCase getUserByIdUseCase;
 
   @Override
   public ResponseEntity<List<UserDto>> getUsers() {
 
-    log.info("[APPLICATION-USECASE] - getUsers");
+    log.info("getUsers");
     final var domainUsers = getUsersUseCase.getUsers();
-    final var userDtos = userRestMapper.mapList(domainUsers);
+    final var userDtoList = userRestMapper.mapListToDto(domainUsers);
 
-    if (userDtos == null || userDtos.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
+    return ResponseEntity.ok(userDtoList);
+  }
 
-    return ResponseEntity.ok(userDtos);
+  @Override
+  public ResponseEntity<UserDto> getUserById(final Long userId) {
+
+    log.info("getUserById by userId {}", userId);
+    final var domainUser = getUserByIdUseCase.getUserById(userId);
+    final var userDto = userRestMapper.mapToDto(domainUser);
+
+    return ResponseEntity.ok(userDto);
   }
 }

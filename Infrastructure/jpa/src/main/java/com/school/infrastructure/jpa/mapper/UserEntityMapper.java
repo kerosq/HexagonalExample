@@ -19,7 +19,7 @@ public interface UserEntityMapper extends MapperHelper {
   @Mapping(source = "password", target = "password")
   @Mapping(source = "role", target = "role")
   @Mapping(source = "status", target = "status")
-  User map(UserEntity userEntity);
+  User mapToDomain(UserEntity userEntity);
 
-  List<User> map(List<UserEntity> userEntity);
+  List<User> mapToListDomain(List<UserEntity> userEntity);
 }

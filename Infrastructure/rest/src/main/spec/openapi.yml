@@ -74,7 +74,7 @@ components:
           type: integer
           description: Edad del usuario
         phone:
-          type: integer
+          type: string
           description: Número de teléfono del usuario
         email:
           type: string
@@ -86,6 +86,26 @@ components:
         role:
           type: string
           description: Rol del usuario
+          example: admin, doctor, patient, staff
+          enum:
+            - admin
+            - doctor
+            - patient
+            - staff
         status:
           type: string
           description: Estado del usuario
+          example: active, inactive, suspended, pending
+          enum:
+            - active
+            - inactive
+            - suspended
+            - pending
+        createdAt:
+          type: string
+          format: date-time
+          description: Fecha y hora de creación del usuario
+        updatedAt:
+          type: string
+          format: date-time
+          description: Fecha y hora de la última actualización del usuario
