@@ -213,10 +213,10 @@ components:
           description: "Día de la semana (1:Lunes - 7:Domingo)"
         startTime:
           type: string
-          format: date-time-hours # Formato estándar para LocalTime
+          format: timeDate # Formato estándar para LocalTime
           example: "09:00:00"
         endTime:
           type: string
-          format: date-time-hours
+          format: timeDate
           example: "17:30:00"
 

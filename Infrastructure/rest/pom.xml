@@ -97,8 +97,14 @@
                                 <!--                                <openApiNullable>false</openApiNullable>-->
 
                             </configOptions>
-                            <typeMappings>string+time=OffsetTime</typeMappings>
-                            <importMappings>OffsetTime=java.time.OffsetTime</importMappings>
+                            <typeMappings>
+                                <mapping>string+time=OffsetTime</mapping>
+                                <mapping>timeDate=LocalTime</mapping>
+                            </typeMappings>
+                            <importMappings>
+                                <mapping>OffsetTime=java.time.OffsetTime</mapping>
+                                <mapping>LocalTime=java.time.LocalTime</mapping>
+                            </importMappings>
                             <globalProperties>
                                 <skipFormModel>false</skipFormModel>
                             </globalProperties>
