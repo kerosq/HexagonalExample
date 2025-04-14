@@ -14,11 +14,14 @@ import org.mapstruct.Named;
 puedes usar implementationName si quieres un nombre específico
 @Mapper(componentModel = "spring" , implementationName = "TuNombreDeImplementacion")
 */
-@Mapper(componentModel = "spring")
+@Mapper(
+    componentModel = "spring",
+    uses = {DoctorScheduleEntityMapper.class})
 public interface DoctorEntityMapper extends MapperHelper {
 
   @Mapping(source = "user", target = "userId", qualifiedByName = "userEntityToUserId")
   @Mapping(source = "specialty", target = "specialtyId", qualifiedByName = "specialtyEntityToId")
+  @Mapping(source = "doctorSchedules", target = "schedules")
   Doctor mapToDomain(DoctorEntity doctorEntity);
 
   List<Doctor> mapToListDomain(List<DoctorEntity> doctorEntities);

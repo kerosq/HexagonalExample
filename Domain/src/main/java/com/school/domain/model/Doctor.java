@@ -2,6 +2,9 @@ package com.school.domain.model;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.*;
 
 @Getter
@@ -23,6 +26,9 @@ public class Doctor {
   private Boolean active;
   private OffsetDateTime createdAt;
   private OffsetDateTime updatedAt;
+
+  // Añadir lista de horarios. Inicializarla ayuda a evitar NullPointerException.
+  @Builder.Default private List<DoctorSchedule> schedules = new ArrayList<>();
 
   // Nota: Evitamos incluir colecciones (Appointments, Schedules, etc.) aquí
   // para mantener el modelo de dominio enfocado. Se pueden cargar bajo demanda si es necesario.

@@ -24,6 +24,7 @@ public interface DoctorRestMapper extends MapperHelper {
   @Mapping(source = "active", target = "active")
   @Mapping(source = "createdAt", target = "createdAt")
   @Mapping(source = "updatedAt", target = "updatedAt")
+  @Mapping(source = "schedules", target = "schedules")
   DoctorDto mapToDto(Doctor doctor);
 
   List<DoctorDto> mapListToDto(List<Doctor> doctors);

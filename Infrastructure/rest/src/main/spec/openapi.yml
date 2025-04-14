@@ -196,3 +196,27 @@ components:
           type: string
           format: date-time
           description: Fecha y hora de la última actualización
+        schedules: # Nueva propiedad para la lista de horarios
+          type: array
+          description: Horarios semanales del doctor
+          items:
+            $ref: '#/components/schemas/DoctorSchedule' # Referencia al nuevo DTO
+    DoctorSchedule: # Nuevo esquema para el DTO de Horario
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        dayOfWeek:
+          type: integer
+          format: int32 # Smallint/Short -> integer
+          description: "Día de la semana (1:Lunes - 7:Domingo)"
+        startTime:
+          type: string
+          format: date-time-hours # Formato estándar para LocalTime
+          example: "09:00:00"
+        endTime:
+          type: string
+          format: date-time-hours
+          example: "17:30:00"
+
