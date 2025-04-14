@@ -5,7 +5,6 @@ import com.school.domain.service.UserService;
 import com.school.infrastructure.jpa.mapper.UserEntityMapper;
 import com.school.infrastructure.jpa.repository.UserEntityRepository;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
