@@ -8,14 +8,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service // También puedes definirlo como @Service
+@Service
 public class DoctorPersistenceService implements DoctorService {
 
   /*
   ¡Asegúrate que el nombre del mapper sea correcto y que esté en el contexto de Spring!
   */
   private final DoctorEntityMapper doctorEntityMapperMapper;
-
   private final DoctorEntityRepository doctorEntityRepository;
 
   public DoctorPersistenceService(
