@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import lombok.*;
@@ -56,9 +56,9 @@ public class DoctorEntity implements Serializable {
 
   private Boolean active;
 
-  private Instant createdAt;
+  private OffsetDateTime createdAt;
 
-  private Instant updatedAt;
+  private OffsetDateTime updatedAt;
 
   private Set<AppointmentEntity> appointments = new LinkedHashSet<>();
 
@@ -138,13 +138,13 @@ public class DoctorEntity implements Serializable {
 
   @ColumnDefault("CURRENT_TIMESTAMP")
   @Column(name = "created_at")
-  public Instant getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
   @ColumnDefault("CURRENT_TIMESTAMP")
   @Column(name = "updated_at")
-  public Instant getUpdatedAt() {
+  public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 

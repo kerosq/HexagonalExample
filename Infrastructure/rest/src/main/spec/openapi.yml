@@ -17,6 +17,8 @@ servers:
 tags:
   - name: User
     description: Operaciones relacionadas con usuarios.
+  - name: Doctor
+    description: Operaciones relacionadas con doctores.
 paths:
   '/user':
     get:
@@ -55,6 +57,46 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: NOT FOUND
+  '/doctor':
+    get:
+      tags:
+        - Doctor
+      summary: Obtener todos los doctores
+      operationId: getDoctors # Debe coincidir con el método en el Delegate
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Doctor' # Referencia al nuevo esquema
+  '/doctor/{doctorId}':
+    get:
+      tags:
+        - Doctor
+      summary: Obtener doctor por ID
+      operationId: getDoctorById # Debe coincidir con el método en el Delegate
+      parameters:
+        - name: doctorId
+          in: path
+          required: true
+          schema:
+            type: integer # El ID de DoctorEntity es Integer
+            format: int64 # Usar int32 para Integer o int64 para Long
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Doctor'
+        '404': # Manejado por el ExceptionHandler
+          description: Doctor no encontrado
+          # Puedes añadir un schema de error aquí si quieres ser más explícito
+
+
 components:
   schemas:
     User:
@@ -109,3 +151,48 @@ components:
           type: string
           format: date-time
           description: Fecha y hora de la última actualización del usuario
+    Doctor: # Nuevo esquema para DoctorDto
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32 # Coincide con el tipo Integer
+          description: Identificador único del doctor
+        userId:
+          type: integer
+          format: int64 # El ID de User es Long
+          description: ID del usuario asociado
+        firstName:
+          type: string
+          description: Nombre del doctor
+        lastName:
+          type: string
+          description: Apellido del doctor
+        specialtyId:
+          type: integer
+          format: int32
+          description: ID de la especialidad
+        licenseNumber:
+          type: string
+          description: Número de licencia del doctor
+        phone:
+          type: string
+          description: Número de teléfono del doctor
+        email:
+          type: string
+          description: Correo electrónico del doctor
+        hireDate:
+          type: string
+          format: date # LocalDate se mapea a 'date'
+          description: Fecha de contratación
+        active:
+          type: boolean
+          description: Indica si el doctor está activo
+        createdAt:
+          type: string
+          format: date-time # Instant se mapea a 'date-time'
+          description: Fecha y hora de creación
+        updatedAt:
+          type: string
+          format: date-time
+          description: Fecha y hora de la última actualización
