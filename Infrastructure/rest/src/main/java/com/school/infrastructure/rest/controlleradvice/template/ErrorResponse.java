@@ -1,4 +1,4 @@
-package com.school.infrastructure.rest.controlleradvice;
+package com.school.infrastructure.rest.controlleradvice.template;
 
 import java.util.Map;
 import lombok.AllArgsConstructor;
