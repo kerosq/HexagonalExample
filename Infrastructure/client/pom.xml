@@ -3,17 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Configuración del proyecto padre -->
     <parent>
         <artifactId>Infrastructure</artifactId>
         <groupId>com.school</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <!-- Identificación del módulo Infrastructure-client -->
     <artifactId>Infrastructure-client</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
 
+    <!-- Propiedades específicas del módulo -->
     <properties>
-        <packgage.name>com.school.infrastructure.client</packgage.name>
+        <package.name>com.school.infrastructure.client</package.name>
     </properties>
-
 </project>

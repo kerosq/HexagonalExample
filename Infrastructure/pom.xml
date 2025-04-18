@@ -3,33 +3,36 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Configuración del proyecto padre -->
     <parent>
         <groupId>com.school</groupId>
         <artifactId>HexagonalExample</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <!-- Identificación del módulo Infrastructure -->
     <artifactId>Infrastructure</artifactId>
-    <packaging>pom</packaging>
+    <packaging>pom</packaging> <!-- Este módulo es un contenedor para submódulos -->
     <name>${project.groupId}:${project.artifactId}</name>
 
+    <!-- Dependencias necesarias para este módulo -->
     <dependencies>
-
+        <!-- Dependencia del módulo Domain -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Domain</artifactId>
         </dependency>
+        <!-- Dependencia del módulo Application -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Application</artifactId>
         </dependency>
-
     </dependencies>
 
+    <!-- Submódulos de Infrastructure -->
     <modules>
         <module>client</module>
         <module>jpa</module>
         <module>rest</module>
     </modules>
-
 </project>
