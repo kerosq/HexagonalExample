@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://pro-db-server:5432/prodb
+    username: pro_user
+    password: pro_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        use_sql_comments: false
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

@@ -1,25 +1,3 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/APP
-    username: user
-    password: user
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
-    properties:
-      hibernate:
-        use_sql_comments: true
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        show_sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-  application:
-    name: APP
-
-springdoc:
-  swagger-ui:
-    enabled: true
-  api-docs:
-    enabled: true
+  profiles:
+    active: local # Cambia este valor a 'dev', 'pre' o 'pro' según el entorno

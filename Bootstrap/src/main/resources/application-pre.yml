@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://pre-db-server:5432/predb
+    username: pre_user
+    password: pre_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        use_sql_comments: false
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
