@@ -1,5 +1,7 @@
 package com.school.domain.model;
 
+import com.school.domain.enums.UserRoles;
+import com.school.domain.enums.UserStatus;
 import java.time.OffsetDateTime;
 import lombok.*;
 
@@ -17,8 +19,8 @@ public class User {
   private String phone;
   private String email;
   private String password;
-  private String role;
-  private String status;
+  private UserRoles role;
+  private UserStatus status;
   private OffsetDateTime createdAt;
   private OffsetDateTime updatedAt;
 }
