@@ -39,6 +39,10 @@
         <sonar.language>java</sonar.language>
         <sonar.java.source>${java.version}</sonar.java.source>
         <sonar.java.target>${java.version}</sonar.java.target>
+
+        <!-- Configuración de generación de código WSDL-->
+        <jaxws-maven-plugin.version>4.0.1</jaxws-maven-plugin.version>
+        <jaxb-plugins.version>4.0.0</jaxb-plugins.version>
     </properties>
 
     <!-- Módulos del proyecto -->

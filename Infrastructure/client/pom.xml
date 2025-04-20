@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Configuración del proyecto padre -->
     <parent>
-        <artifactId>Infrastructure</artifactId>
         <groupId>com.school</groupId>
+        <artifactId>Infrastructure</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <!-- Identificación del módulo Infrastructure-client -->
     <artifactId>Infrastructure-client</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
 
-    <!-- Propiedades específicas del módulo -->
     <properties>
         <package.name>com.school.infrastructure.client</package.name>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxws-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>${package.name}.wsdl</packageName>
+                    <wsdlDirectory>${project.basedir}/src/main/resources/wsdl/</wsdlDirectory>
+                    <wsdlFiles>
+                        <wsdlFile>countries.wsdl</wsdlFile>
+                    </wsdlFiles>
+                    <wsdlLocation>/countries.wsdl</wsdlLocation>
+                    <xjcArgs>
+                        <xjcArg>-Xsetters</xjcArg>
+                    </xjcArgs>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb</groupId>
+                        <artifactId>jaxb-plugins</artifactId>
+                        <version>${jaxb-plugins.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

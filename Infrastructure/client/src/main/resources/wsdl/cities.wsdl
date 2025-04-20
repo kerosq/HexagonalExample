@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:tns="http://www.example.com/ws/cities"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        targetNamespace="http://www.example.com/ws/cities"
+        name="CitiesService">
+
+    <types>
+        <xs:schema
+                targetNamespace="http://www.example.com/ws/cities"
+                elementFormDefault="qualified">
+            <xs:element name="getCityRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCityResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="city" type="tns:city"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="city">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="population" type="xs:int"/>
+                    <xs:element name="country" type="xs:string"/>
+                    <xs:element name="isCapital" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </types>
+
+    <message name="getCityRequest">
+        <part name="parameters" element="tns:getCityRequest"/>
+    </message>
+    <message name="getCityResponse">
+        <part name="parameters" element="tns:getCityResponse"/>
+    </message>
+
+    <portType name="CitiesPort">
+        <operation name="getCity">
+            <input message="tns:getCityRequest"/>
+            <output message="tns:getCityResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="CitiesPortSoap11" type="tns:CitiesPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getCity">
+            <soap:operation soapAction="getCity"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="CitiesService">
+        <documentation>Cities SOAP Service</documentation>
+        <port name="CitiesPort" binding="tns:CitiesPortSoap11">
+            <soap:address location="http://localhost:8080/ws/cities"/>
+        </port>
+    </service>
+</definitions>
